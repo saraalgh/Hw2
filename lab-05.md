@@ -120,12 +120,9 @@ nobel_living_science %>%
 
 105. 
 
-``` r
-nobel_living_science <- nobel_living_science %>%
-    mutate(
-      
-   born_country_us = if_else(born_country == "USA", "USA", "Other") )
-```
+nobel\_living\_science %&gt;% filter(born\_country\_us == "USA) %&gt;%
+count(born\_country\_us) \# tibble: 1 x 2 born\_country\_us n <chr>
+<int> 1 USA 105
 
 Knit, *commit, and push your changes to GitHub with an appropriate
 commit message. Make sure to commit and push all changed files so that
@@ -151,7 +148,7 @@ nobel_living_science <- nobel_living_science %>% mutate( born_country_us = if_el
 nobel_living_science %>%ggplot(aes(x = country_us,y=born_country_us, fill = category)) + geom_bar(stat = "identity", position = "dodge", orientation="horizontal")
 ```
 
-![](lab-05_files/figure-gfm/unnamed-chunk-8-1.png)<!-- --> \`\`\`
+![](lab-05_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 Knit, *commit, and push your changes to GitHub with an appropriate
 commit message. Make sure to commit and push all changed files so that
@@ -164,10 +161,33 @@ your Git pane is cleared up afterwards.*
     order of number of observations for each country. Which country is
     the most common?
 
-Knit, *commit, and push your changes to GitHub with an appropriate
+Germany and United Kingdom
+
+``` r
+nobel_living_science %>% filter(born_country_us== "Other",country_us == "USA")%>% count(born_country) %>% arrange(desc(n))
+```
+
+    ## # A tibble: 21 x 2
+    ##    born_country       n
+    ##    <chr>          <int>
+    ##  1 Germany            7
+    ##  2 United Kingdom     7
+    ##  3 China              5
+    ##  4 Canada             4
+    ##  5 Japan              3
+    ##  6 Australia          2
+    ##  7 Israel             2
+    ##  8 Norway             2
+    ##  9 Austria            1
+    ## 10 Finland            1
+    ## # … with 11 more rows
+
+Knit, \*commit, and push your changes to GitHub with an appropriate
 commit message. Make sure to commit and push all changed files so that
-your Git pane is cleared up afterwards and review the md document on
-GitHub to make sure you’re happy with the final state of your work.*
+your Git pane is cleared up afterwards and review the md docu
+
+ment on GitHub to make sure you’re happy with the final state of your
+work.\*
 
 Now go back through your write up to make sure you’ve answered all
 questions and all of your R chunks are properly labelled. Once you

@@ -110,12 +110,12 @@ nobel_living_science %>%
     How many of the winners are born in the US?
 (105)
 
-```{r}
-nobel_living_science <- nobel_living_science %>%
-    mutate(
-      
-   born_country_us = if_else(born_country == "USA", "USA", "Other") )
-```
+nobel_living_science %>% filter(born_country_us == "USA) %>%
+count(born_country_us)
+# tibble: 1 x 2
+  born_country_us    n
+<chr>           <int>
+1 USA            105
 
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.d*
 
@@ -133,7 +133,7 @@ yes , because in buzzfeed  we analyzing the data to search for more understandin
 nobel_living_science <- nobel_living_science %>% mutate( born_country_us = if_else(born_country == "USA", "USA", "Other"))
 nobel_living_science %>%ggplot(aes(x = country_us,y=born_country_us, fill = category)) + geom_bar(stat = "identity", position = "dodge", orientation="horizontal")
 ```
-```
+
 
 Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
@@ -141,12 +141,21 @@ Knit, *commit, and push your changes to GitHub with an appropriate commit messag
 
 6.  In a single pipeline, filter for laureates who won their prize in the US, but were born outside of the US, and then create a frequency table (with the `count()` function) for their birth country (`born_country`) and arrange the resulting data frame in descending order of number of observations for each country. Which country is the most common?
 
+Germany and United Kingdom
 
 ```{r}
+nobel_living_science %>% filter(born_country_us== "Other",country_us == "USA")%>% count(born_country) %>% arrange(desc(n))
 
 ```
 
-Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
+
+
+Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md docu
+
+
+
+
+ment on GitHub to make sure you're happy with the final state of your work.*
 
 
 Now go back through your write up to make sure you've answered all questions and all of your R chunks are properly labelled.
